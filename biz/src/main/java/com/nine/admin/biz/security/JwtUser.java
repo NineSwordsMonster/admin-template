@@ -1,4 +1,4 @@
-package com.nine.admin.security;
+package com.nine.admin.biz.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

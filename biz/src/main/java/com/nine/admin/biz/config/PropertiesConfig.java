@@ -1,4 +1,4 @@
-package com.nine.admin.config;
+package com.nine.admin.biz.config;
 
 /**
  * Create by 王佳

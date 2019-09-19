@@ -1,4 +1,4 @@
-package com.nine.admin.config;
+package com.nine.admin.biz.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

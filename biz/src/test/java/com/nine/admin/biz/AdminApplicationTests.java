@@ -1,4 +1,4 @@
-package com.nine.admin;
+package com.nine.admin.biz;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

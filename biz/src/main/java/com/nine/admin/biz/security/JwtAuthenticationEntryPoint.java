@@ -1,4 +1,4 @@
-package com.nine.admin.security;
+package com.nine.admin.biz.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

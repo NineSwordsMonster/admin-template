@@ -1,4 +1,4 @@
-package com.nine.admin.common.entity;
+package com.nine.admin.dal.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

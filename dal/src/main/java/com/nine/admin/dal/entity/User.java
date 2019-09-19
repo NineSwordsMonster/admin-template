@@ -1,4 +1,4 @@
-package com.nine.admin.common.entity;
+package com.nine.admin.dal.entity;
 
 import lombok.Data;
 

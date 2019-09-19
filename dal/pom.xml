@@ -9,26 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>api</artifactId>
+    <artifactId>dal</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.nine.admin</groupId>
-            <artifactId>biz</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.nine.admin</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
     </dependencies>
-
 </project>

@@ -1,8 +1,8 @@
-package com.nine.admin.service.impl;
+package com.nine.admin.biz.service.impl;
 
 import com.nine.admin.dto.UserDTO;
 import com.nine.admin.entity.User;
-import com.nine.admin.service.UserService;
+import com.nine.admin.biz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;

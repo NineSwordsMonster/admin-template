@@ -1,4 +1,4 @@
-package com.nine.admin.common.entity;
+package com.nine.admin.dal.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -18,7 +18,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
-import java.util.StringJoiner;
 
 /**
  * Create by 王佳
@@ -28,8 +27,8 @@ import java.util.StringJoiner;
  */
 @Entity
 @Data
-@Table(name = "permission")
-public class Permission implements Serializable {
+@Table(name = "menu")
+public class Menu implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,35 +38,36 @@ public class Permission implements Serializable {
     @NotBlank
     private String name;
 
-    /**
-     * 上级类目
-     */
+    @Column(unique = true)
     @NotNull
+    private Long sort;
+
+    @Column(name = "path")
+    private String path;
+
+    private String component;
+
+    private String icon;
+
+    /**
+     * 上级菜单ID
+     */
     @Column(name = "pid", nullable = false)
     private Long pid;
 
-    @NotBlank
-    private String alias;
+    /**
+     * 是否为外链 true/false
+     */
+    @Column(name = "i_frame")
+    private Boolean iFrame;
 
+    @ManyToMany(mappedBy = "menus")
     @JsonIgnore
-    @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time")
     private Date createTime;
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Permission.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("name='" + name + "'")
-                .add("pid=" + pid)
-                .add("alias='" + alias + "'")
-                .add("roles=" + roles)
-                .add("createTime=" + createTime)
-                .toString();
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -77,18 +77,13 @@ public class Permission implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Permission that = (Permission) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(pid, that.pid) &&
-                Objects.equals(alias, that.alias) &&
-                Objects.equals(roles, that.roles) &&
-                Objects.equals(createTime, that.createTime);
+        Menu menu = (Menu) o;
+        return Objects.equals(id, menu.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, pid, alias, createTime);
+        return Objects.hash(id);
     }
 
     public interface Update {

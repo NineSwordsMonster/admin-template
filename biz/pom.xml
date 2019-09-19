@@ -14,6 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>com.nine.admin</groupId>
+            <artifactId>dal</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nine.admin</groupId>
             <artifactId>common</artifactId>
         </dependency>
     </dependencies>

@@ -1,4 +1,4 @@
-package com.nine.admin.service;
+package com.nine.admin.biz.service;
 
 import com.nine.admin.dto.UserDTO;
 import com.nine.admin.entity.User;

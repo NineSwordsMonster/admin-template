@@ -1,4 +1,4 @@
-package com.nine.admin.config;
+package com.nine.admin.biz.config;
 
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
