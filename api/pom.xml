@@ -9,10 +9,22 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common</artifactId>
+    <artifactId>api</artifactId>
 
     <dependencies>
-    </dependencies>
+        <dependency>
+            <groupId>com.nine.admin</groupId>
+            <artifactId>biz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nine.admin</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

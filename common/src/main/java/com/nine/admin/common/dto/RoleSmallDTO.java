@@ -1,4 +1,4 @@
-package com.nine.admin.dto;
+package com.nine.admin.common.dto;
 
 import lombok.Data;
 
