@@ -1,20 +1,20 @@
 package com.nine.admin.service;
 
+import com.nine.admin.dto.UserDTO;
 import com.nine.admin.entity.User;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 
-
 /**
  * Create by 王佳
  *
  * @author 王佳
- * @date 2019/9/19 02:44
+ * @date 2019/9/19 09:19
  */
 @CacheConfig(cacheNames = "user")
-public class UserService {
+public interface UserService {
 
     /**
      * get
