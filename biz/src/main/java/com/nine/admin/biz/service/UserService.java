@@ -1,11 +1,10 @@
 package com.nine.admin.biz.service;
 
-import com.nine.admin.dto.UserDTO;
-import com.nine.admin.entity.User;
+
+import com.nine.admin.common.dto.UserDTO;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Pageable;
 
 /**
  * Create by 王佳
@@ -18,7 +17,9 @@ public interface UserService {
 
     /**
      * get
+     *
      * @param id
+     *
      * @return
      */
     @Cacheable(key = "#p0")
@@ -26,7 +27,9 @@ public interface UserService {
 
     /**
      * create
+     *
      * @param resources
+     *
      * @return
      */
     @CacheEvict(allEntries = true)
@@ -34,6 +37,7 @@ public interface UserService {
 
     /**
      * update
+     *
      * @param resources
      */
     @CacheEvict(allEntries = true)
@@ -41,6 +45,7 @@ public interface UserService {
 
     /**
      * delete
+     *
      * @param id
      */
     @CacheEvict(allEntries = true)
@@ -48,7 +53,9 @@ public interface UserService {
 
     /**
      * findByName
+     *
      * @param userName
+     *
      * @return
      */
     @Cacheable(key = "'loadUserByUsername:'+#p0")
@@ -56,6 +63,7 @@ public interface UserService {
 
     /**
      * 修改密码
+     *
      * @param username
      * @param encryptPassword
      */
@@ -64,6 +72,7 @@ public interface UserService {
 
     /**
      * 修改头像
+     *
      * @param username
      * @param url
      */
@@ -72,6 +81,7 @@ public interface UserService {
 
     /**
      * 修改邮箱
+     *
      * @param username
      * @param email
      */

@@ -6,6 +6,7 @@ package com.nine.admin.config;
  * @author 王佳
  * @date 2019/9/19 02:34
  */
+
 import com.nine.admin.config.security.JwtAuthenticationEntryPoint;
 import com.nine.admin.config.security.JwtAuthorizationTokenFilter;
 import com.nine.admin.config.security.JwtUserDetailsService;
@@ -94,7 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).anonymous()
 
-                .antMatchers( HttpMethod.POST,"/auth/"+loginPath).anonymous()
+                .antMatchers(HttpMethod.POST, "/auth/" + loginPath).anonymous()
                 .antMatchers("/auth/vCode").anonymous()
 
                 // swagger start
