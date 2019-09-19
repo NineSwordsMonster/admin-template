@@ -1,4 +1,4 @@
-package com.nine.admin.biz.config;
+package com.nine.admin.config;
 
 /**
  * Create by 王佳
@@ -6,9 +6,9 @@ package com.nine.admin.biz.config;
  * @author 王佳
  * @date 2019/9/19 02:34
  */
-import com.nine.admin.biz.security.JwtAuthenticationEntryPoint;
-import com.nine.admin.biz.security.JwtAuthorizationTokenFilter;
-import com.nine.admin.biz.security.JwtUserDetailsService;
+import com.nine.admin.config.security.JwtAuthenticationEntryPoint;
+import com.nine.admin.config.security.JwtAuthorizationTokenFilter;
+import com.nine.admin.config.security.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

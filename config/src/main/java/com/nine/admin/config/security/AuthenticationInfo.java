@@ -1,4 +1,4 @@
-package com.nine.admin.biz.security;
+package com.nine.admin.config.security;
 
 
 import lombok.AllArgsConstructor;
