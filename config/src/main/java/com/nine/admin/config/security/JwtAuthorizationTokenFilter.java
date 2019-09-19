@@ -1,7 +1,6 @@
 package com.nine.admin.config.security;
 
 
-import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,11 +46,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
-            try {
-                username = jwtTokenUtil.getUsernameFromToken(authToken);
-            } catch (ExpiredJwtException e) {
-                log.error(e.getMessage());
-            }
+            username = jwtTokenUtil.getUsernameFromToken(authToken);
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -1,6 +1,5 @@
 package com.nine.admin.dal.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -14,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -35,11 +32,9 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(groups = {Update.class})
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank
     private String name;
 
     @Column(name = "data_scope")
@@ -51,7 +46,6 @@ public class Role implements Serializable {
     @Column
     private String remark;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 

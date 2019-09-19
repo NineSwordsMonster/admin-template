@@ -1,6 +1,5 @@
 package com.nine.admin.dal.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -12,8 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -33,23 +30,18 @@ public class Permission implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(groups = {Update.class})
     private Long id;
 
-    @NotBlank
     private String name;
 
     /**
      * 上级类目
      */
-    @NotNull
     @Column(name = "pid", nullable = false)
     private Long pid;
 
-    @NotBlank
     private String alias;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles;
 
