@@ -1,7 +1,5 @@
-package com.nine.app.config;
+package com.nine.app.config.security;
 
-import com.nine.app.config.security.JwtAuthenticationEntryPoint;
-import com.nine.app.config.security.JwtAuthorizationFilter;
 import com.nine.app.config.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
