@@ -1,8 +1,6 @@
 package com.nine.app.dal.repository;
 
 import com.nine.app.entity.Permission;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
  * @date 2018-12-03
  */
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Long>, JpaSpecificationExecutor {
+public interface PermissionRepository extends BaseRepository<Permission, Long> {
 
     /**
      * findByName

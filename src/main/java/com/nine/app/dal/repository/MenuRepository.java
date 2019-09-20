@@ -1,8 +1,6 @@
 package com.nine.app.dal.repository;
 
 import com.nine.app.entity.Menu;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.LinkedHashSet;
@@ -13,7 +11,7 @@ import java.util.List;
  * @date 2018-12-17
  */
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificationExecutor {
+public interface MenuRepository extends BaseRepository<Menu, Long> {
 
     /**
      * findByName

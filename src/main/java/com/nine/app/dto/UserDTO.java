@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
@@ -30,7 +29,7 @@ public class UserDTO implements Serializable {
     @JsonIgnore
     private String password;
 
-    private Timestamp createTime;
+    private Date createTime;
 
     private Date lastPasswordResetTime;
 

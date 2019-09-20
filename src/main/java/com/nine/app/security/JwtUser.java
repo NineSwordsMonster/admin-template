@@ -6,7 +6,6 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -39,7 +38,7 @@ public class JwtUser implements UserDetails {
     private final boolean enabled;
     @JsonIgnore
     private final Date lastPasswordResetDate;
-    private Timestamp createTime;
+    private Date createTime;
 
     @JsonIgnore
     @Override

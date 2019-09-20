@@ -26,7 +26,7 @@ public class Menu extends BaseEntity {
     private Long sort;
     @Column(name = "path")
     private String path;
-    @Column(name = "icon")
+    @Column(name = "component")
     private String component;
     @Column(name = "icon")
     private String icon;

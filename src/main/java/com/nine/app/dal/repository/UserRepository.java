@@ -1,8 +1,6 @@
 package com.nine.app.dal.repository;
 
 import com.nine.app.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,7 +12,7 @@ import java.util.Date;
  * @date 2018-11-22
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor {
+public interface UserRepository extends BaseRepository<User, Long> {
 
     /**
      * findByUsername

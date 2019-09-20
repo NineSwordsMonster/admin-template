@@ -1,8 +1,6 @@
 package com.nine.app.dal.repository;
 
 import com.nine.app.entity.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -13,7 +11,7 @@ import java.util.Set;
  * @date 2018-12-03
  */
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor {
+public interface RoleRepository extends BaseRepository<Role, Long> {
 
     /**
      * findByName
