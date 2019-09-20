@@ -1,16 +1,18 @@
 package com.nine.app.security;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 
 /**
- * @author wangjia
- * @date 2018-11-30
+ * Create by 王佳
+ *
+ * @author 王佳
+ * @date 2019/9/20 14:03
  */
-@Getter
-@Setter
+@Data
+@ToString
 public class AuthorizationUser {
 
     @NotBlank
@@ -22,9 +24,4 @@ public class AuthorizationUser {
     private String code;
 
     private String uuid = "";
-
-    @Override
-    public String toString() {
-        return "{username=" + username + ", password= ******}";
-    }
 }

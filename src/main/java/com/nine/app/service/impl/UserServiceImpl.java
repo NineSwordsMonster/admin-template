@@ -4,6 +4,7 @@ import com.nine.app.dal.repository.UserRepository;
 import com.nine.app.dto.UserDTO;
 import com.nine.app.entity.User;
 import com.nine.app.exception.EntityNotFoundException;
+import com.nine.app.mapper.detail.UserMapper;
 import com.nine.app.service.UserService;
 import com.nine.app.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 //
 //    @Autowired
 //    private RedisService redisService;
@@ -113,7 +114,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new EntityNotFoundException(User.class, "name", userName);
         } else {
-            return null;
+            return userMapper.toDTO(user);
         }
     }
 

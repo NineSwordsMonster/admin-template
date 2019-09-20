@@ -37,7 +37,7 @@ public class AuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    @Qualifier("jwtUserDetailsService")
+    @Qualifier("jwtUserDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
     /**

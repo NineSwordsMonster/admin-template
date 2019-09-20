@@ -2,7 +2,7 @@ package com.nine.app.config;
 
 import com.nine.app.security.JwtAuthenticationEntryPoint;
 import com.nine.app.security.JwtAuthorizationTokenFilter;
-import com.nine.app.security.service.JwtUserDetailsService;
+import com.nine.app.security.service.JwtUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
-    private JwtUserDetailsService jwtUserDetailsService;
+    private JwtUserDetailsServiceImpl jwtUserDetailsService;
     @Value("${jwt.header}")
     private String tokenHeader;
 

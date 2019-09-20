@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * Create by 王佳
+ *
+ * @author 王佳
+ * @date 2019/9/20 14:03
+ */
+
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 

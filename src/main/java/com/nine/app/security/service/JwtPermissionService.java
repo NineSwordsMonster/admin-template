@@ -14,6 +14,12 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Create by 王佳
+ *
+ * @author 王佳
+ * @date 2019/9/20 14:03
+ */
 @Service
 @CacheConfig(cacheNames = "role")
 public class JwtPermissionService {
