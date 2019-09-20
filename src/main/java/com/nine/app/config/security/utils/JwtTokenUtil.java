@@ -1,6 +1,6 @@
-package com.nine.app.security.utils;
+package com.nine.app.config.security.utils;
 
-import com.nine.app.security.JwtUser;
+import com.nine.app.config.security.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;

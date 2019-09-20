@@ -1,5 +1,5 @@
-//package com.nine.app.service.impl;
-//
+package com.nine.app.service.impl;
+
 //import com.nine.app.exception.EntityExistException;
 //import com.nine.app.modules.system.domain.Menu;
 //import com.nine.app.modules.system.domain.Role;
@@ -26,14 +26,18 @@
 //import java.util.Optional;
 //import java.util.Set;
 //import java.util.stream.Collectors;
-//
-///**
-// * @author wangjia
-// * @date 2018-12-03
-// */
-//@Service
-//@Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
-//public class RoleServiceImpl implements RoleService {
+
+import com.nine.app.service.RoleService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @author wangjia
+ * @date 2018-12-03
+ */
+@Service
+@Transactional(rollbackFor = Exception.class)
+public class RoleServiceImpl implements RoleService {
 //
 //    @Autowired
 //    private RoleRepository roleRepository;
@@ -137,4 +141,4 @@
 //        }
 //        return Collections.min(roleDTOS.stream().map(RoleDTO::getLevel).collect(Collectors.toList()));
 //    }
-//}
+}

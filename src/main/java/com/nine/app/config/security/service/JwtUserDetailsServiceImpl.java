@@ -1,8 +1,8 @@
-package com.nine.app.security.service;
+package com.nine.app.config.security.service;
 
+import com.nine.app.config.security.JwtUser;
 import com.nine.app.dto.UserDTO;
 import com.nine.app.exception.BadRequestException;
-import com.nine.app.security.JwtUser;
 import com.nine.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

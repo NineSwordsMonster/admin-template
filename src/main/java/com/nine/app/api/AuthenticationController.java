@@ -1,9 +1,9 @@
 package com.nine.app.api;
 
-import com.nine.app.security.AuthenticationInfo;
-import com.nine.app.security.AuthorizationUser;
-import com.nine.app.security.JwtUser;
-import com.nine.app.security.utils.JwtTokenUtil;
+import com.nine.app.config.security.AuthenticationInfo;
+import com.nine.app.config.security.AuthorizationUser;
+import com.nine.app.config.security.JwtUser;
+import com.nine.app.config.security.utils.JwtTokenUtil;
 import com.nine.app.util.EncryptUtils;
 import com.nine.app.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;

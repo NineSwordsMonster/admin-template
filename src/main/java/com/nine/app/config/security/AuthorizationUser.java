@@ -1,4 +1,4 @@
-package com.nine.app.security;
+package com.nine.app.config.security;
 
 import lombok.Data;
 import lombok.ToString;

@@ -35,5 +35,4 @@ public class UserDTO implements Serializable {
 
     private Set<RoleSmallDTO> roles;
 
-    private Long deptId;
 }

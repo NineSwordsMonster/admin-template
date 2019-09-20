@@ -1,6 +1,6 @@
-package com.nine.app.security;
+package com.nine.app.config.security;
 
-import com.nine.app.security.utils.JwtTokenUtil;
+import com.nine.app.config.security.utils.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

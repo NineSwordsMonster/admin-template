@@ -1,4 +1,4 @@
-//package com.nine.app.service;
+package com.nine.app.service;
 //
 //import com.nine.app.dto.RoleDTO;
 //import com.nine.app.dto.RoleSmallDTO;
@@ -17,7 +17,7 @@
 // * @date 2018-12-03
 // */
 //@CacheConfig(cacheNames = "role")
-//public interface RoleService {
+public interface RoleService {
 //
 //    /**
 //     * get
@@ -94,4 +94,4 @@
 //     * @return
 //     */
 //    Object queryAll(RoleQueryCriteria criteria, Pageable pageable);
-//}
+}

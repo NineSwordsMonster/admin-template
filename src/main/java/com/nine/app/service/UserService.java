@@ -1,6 +1,7 @@
 package com.nine.app.service;
 
 import com.nine.app.dto.UserDTO;
+import com.nine.app.entity.User;
 
 /**
  * @author wangjia
@@ -17,13 +18,15 @@ public interface UserService {
 //    @Cacheable(key = "#p0")
 //    UserDTO findById(long id);
 //
-//    /**
-//     * create
-//     * @param resources
-//     * @return
-//     */
-//    @CacheEvict(allEntries = true)
-//    UserDTO create(User resources);
+
+    /**
+     * create
+     *
+     * @param resources
+     *
+     * @return
+     */
+    UserDTO create(User resources);
 //
 //    /**
 //     * update

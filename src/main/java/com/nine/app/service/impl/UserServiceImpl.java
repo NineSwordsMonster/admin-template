@@ -3,12 +3,14 @@ package com.nine.app.service.impl;
 import com.nine.app.dal.repository.UserRepository;
 import com.nine.app.dto.UserDTO;
 import com.nine.app.entity.User;
+import com.nine.app.exception.EntityExistException;
 import com.nine.app.exception.EntityNotFoundException;
 import com.nine.app.mapper.detail.UserMapper;
 import com.nine.app.service.UserService;
 import com.nine.app.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,23 +46,24 @@ public class UserServiceImpl implements UserService {
 //        return userMapper.toDto(user.get());
 //    }
 //
-//    @Override
-//    @Transactional(rollbackFor = Exception.class)
-//    public UserDTO create(User resources) {
-//
-//        if(userRepository.findByUsername(resources.getUsername())!=null){
-//            throw new EntityExistException(User.class,"username",resources.getUsername());
-//        }
-//
-//        if(userRepository.findByEmail(resources.getEmail())!=null){
-//            throw new EntityExistException(User.class,"email",resources.getEmail());
-//        }
-//
-//        // 默认密码 123456，此密码是加密后的字符
-//        resources.setPassword("e10adc3949ba59abbe56e057f20f883e");
+@Override
+@CacheEvict(allEntries = true)
+@Transactional(rollbackFor = Exception.class)
+public UserDTO create(User resources) {
+
+    if (userRepository.findByUsername(resources.getUsername()) != null) {
+        throw new EntityExistException(User.class, "username", resources.getUsername());
+    }
+
+    if (userRepository.findByEmail(resources.getEmail()) != null) {
+        throw new EntityExistException(User.class, "email", resources.getEmail());
+    }
+
+    // 默认密码 123456，此密码是加密后的字符
+//        resources.setPassword(passwordEncoder.encode("123456"));
 //        resources.setAvatar("https://i.loli.net/2019/04/04/5ca5b971e1548.jpeg");
-//        return userMapper.toDto(userRepository.save(resources));
-//    }
+    return userMapper.toDTO(userRepository.save(resources));
+}
 //
 //    @Override
 //    @Transactional(rollbackFor = Exception.class)

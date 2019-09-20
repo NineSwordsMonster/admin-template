@@ -1,4 +1,4 @@
-package com.nine.app.security.service;
+package com.nine.app.config.security.service;
 
 import com.nine.app.dal.repository.RoleRepository;
 import com.nine.app.dto.UserDTO;

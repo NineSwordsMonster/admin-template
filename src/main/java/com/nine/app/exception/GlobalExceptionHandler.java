@@ -3,6 +3,7 @@ package com.nine.app.exception;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -19,6 +20,7 @@ import static org.springframework.core.annotation.AnnotatedElementUtils.findMerg
  * @author 王佳
  * @date 2019/9/20 14:33
  */
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -33,6 +35,7 @@ public class GlobalExceptionHandler {
         } else {
             message = new Message(status.value(), e.getCause().toString(), e.getLocalizedMessage());
         }
+        log.error("服务异常", e);
         return new ResponseEntity<>(message, status);
     }
 
@@ -41,6 +44,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Message> handleAccountExpiredException(AccountExpiredException e) {
         ResponseStatus responseStatus = findMergedAnnotation(e.getClass(), ResponseStatus.class);
         HttpStatus status = responseStatus != null ? responseStatus.value() : HttpStatus.UNAUTHORIZED;
+        log.error("服务异常", e);
         return new ResponseEntity<>(new Message(status.value(), HttpStatus.UNAUTHORIZED.name(), e.getMessage()), status);
     }
 
@@ -49,6 +53,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Message> handleException(Exception e) {
         ResponseStatus responseStatus = findMergedAnnotation(e.getClass(), ResponseStatus.class);
         HttpStatus status = responseStatus != null ? responseStatus.value() : HttpStatus.INTERNAL_SERVER_ERROR;
+        log.error("服务异常", e);
         return new ResponseEntity<>(new Message(status.value(), "", e.getMessage()), status);
     }
 

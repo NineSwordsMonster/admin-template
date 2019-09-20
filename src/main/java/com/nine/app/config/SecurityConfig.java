@@ -1,8 +1,8 @@
 package com.nine.app.config;
 
-import com.nine.app.security.JwtAuthenticationEntryPoint;
-import com.nine.app.security.JwtAuthorizationTokenFilter;
-import com.nine.app.security.service.JwtUserDetailsServiceImpl;
+import com.nine.app.config.security.JwtAuthenticationEntryPoint;
+import com.nine.app.config.security.JwtAuthorizationTokenFilter;
+import com.nine.app.config.security.service.JwtUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Create by 王佳
+ *
+ * @author 王佳
+ * @date 2019/9/20 14:03
+ */
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,11 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 自定义基于JWT的安全过滤器
      */
     @Autowired
-    JwtAuthorizationTokenFilter authenticationTokenFilter;
+    private JwtAuthorizationTokenFilter authenticationTokenFilter;
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
     private JwtUserDetailsServiceImpl jwtUserDetailsService;
+
     @Value("${jwt.header}")
     private String tokenHeader;
 
@@ -46,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    GrantedAuthorityDefaults grantedAuthorityDefaults() {
+    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
         // Remove the ROLE_ prefix
         return new GrantedAuthorityDefaults("");
     }
@@ -64,46 +72,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
+        final String[] whiteList = {
+                "/*.html",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.js"
+        };
         httpSecurity
-
                 // 禁用 CSRF
                 .csrf().disable()
-
                 // 授权异常
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-
                 // 不创建会话
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
                 // 过滤请求
                 .authorizeRequests()
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/*.html",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).anonymous()
-
-                .antMatchers(HttpMethod.POST, "/auth/" + loginPath).anonymous()
-                .antMatchers("/auth/vCode").anonymous()
-                // 支付宝回调
-                .antMatchers("/api/aliPay/return").anonymous()
-                .antMatchers("/api/aliPay/notify").anonymous()
-
-                // swagger start
-                .antMatchers("/swagger-ui.html").anonymous()
-                .antMatchers("/swagger-resources/**").anonymous()
-                .antMatchers("/webjars/**").anonymous()
-                .antMatchers("/*/api-docs").anonymous()
-                // swagger end
-
-                // 接口限流测试
-                .antMatchers("/test/**").anonymous()
+                .antMatchers(HttpMethod.GET, whiteList).anonymous()
+                .antMatchers(HttpMethod.POST, "/auth/" + loginPath, "/user/create").anonymous()
                 .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
-
-                .antMatchers("/druid/**").anonymous()
                 // 所有请求都需要认证
                 .anyRequest().authenticated()
                 // 防止iframe 造成跨域
