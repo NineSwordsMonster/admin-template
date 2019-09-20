@@ -1,7 +1,7 @@
 package com.nine.app.config;
 
 import com.nine.app.config.security.JwtAuthenticationEntryPoint;
-import com.nine.app.config.security.JwtAuthorizationTokenFilter;
+import com.nine.app.config.security.JwtAuthorizationFilter;
 import com.nine.app.config.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 自定义基于JWT的安全过滤器
      */
     @Autowired
-    private JwtAuthorizationTokenFilter authenticationTokenFilter;
+    private JwtAuthorizationFilter authenticationTokenFilter;
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
