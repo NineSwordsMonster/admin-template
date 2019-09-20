@@ -1,14 +1,12 @@
 package com.nine.app.service;
 
 import com.nine.app.dto.UserDTO;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 
 /**
  * @author wangjia
  * @date 2018-11-23
  */
-@CacheConfig(cacheNames = "user")
+
 public interface UserService {
 
 //    /**
@@ -48,7 +46,6 @@ public interface UserService {
      *
      * @return
      */
-    @Cacheable(key = "'loadUserByUsername:'+#p0")
     UserDTO findByName(String userName);
 
 //    /**

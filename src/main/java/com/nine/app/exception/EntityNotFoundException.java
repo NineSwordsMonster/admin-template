@@ -7,10 +7,12 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
- * @author Zheng Jie
- * @date 2018-11-23
+ * Create by 王佳
+ *
+ * @author 王佳
+ * @date 2019/9/20 14:03
  */
-public class EntityNotFoundException extends RuntimeException {
+public class EntityNotFoundException extends BaseException {
 
     public EntityNotFoundException(Class clazz, Object... searchParamsMap) {
         super(EntityNotFoundException.generateMessage(clazz.getSimpleName(), toMap(String.class, String.class, searchParamsMap)));

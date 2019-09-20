@@ -8,8 +8,9 @@ import com.nine.app.mapper.detail.UserMapper;
 import com.nine.app.service.UserService;
 import com.nine.app.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @date 2018-11-23
  */
 @Service
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class)
+@CacheConfig(cacheNames = "user")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -103,6 +105,7 @@ public class UserServiceImpl implements UserService {
 //        userRepository.deleteById(id);
 //    }
 
+    @Cacheable(key = "'loadUserByUsername:'+#p0")
     @Override
     public UserDTO findByName(String userName) {
         User user = null;

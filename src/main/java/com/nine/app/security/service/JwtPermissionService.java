@@ -36,9 +36,6 @@ public class JwtPermissionService {
      */
     @Cacheable(key = "'loadPermissionByUser:' + #p0.username")
     public Collection<GrantedAuthority> mapToGrantedAuthorities(UserDTO user) {
-
-        System.out.println("--------------------loadPermissionByUser:" + user.getUsername() + "---------------------");
-
         Set<Role> roles = roleRepository.findByUsers_Id(user.getId());
 
         return roles.stream().flatMap(role -> role.getPermissions().stream())
