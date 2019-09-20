@@ -4,6 +4,7 @@ import com.nine.app.dto.UserDTO;
 import com.nine.app.service.RoleService;
 import com.nine.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -32,11 +33,11 @@ public class UserController {
     @PostMapping(value = "/create")
 //    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_CREATE')")
     @PreAuthorize("permitAll()")
-    public ResponseEntity create(@Validated @RequestBody UserDTO resources, Authentication authentication) {
+    public ResponseEntity<UserDTO> create(@Validated @RequestBody UserDTO resources, Authentication authentication) {
 //        authentication.getDetails()
 //        checkLevel(resources);
-        return null;
-//        return new ResponseEntity(userService.create(resources), HttpStatus.CREATED);
+        final UserDTO userDTO = userService.create(resources);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
     }
 
 //    @PutMapping(value = "/users")
@@ -84,7 +85,7 @@ public class UserController {
      * @param resources
      */
 //    private void checkLevel(User resources) {
-//        Integer currentLevel = Collections.min(roleService.findByUsers_Id(SecurityUtils.getUserId()).stream().map(RoleSmallDTO::getLevel).collect(Collectors.toList()));
+//        Integer currentLevel = roleService.findByUsers_Id(SecurityUtils.getUserId()).stream().map(RoleSmallDTO::getLevel).
 //        Integer optLevel = roleService.findByRoles(resources.getRoles());
 //        if (currentLevel > optLevel) {
 //            throw new BadRequestException("角色权限不足");

@@ -1,7 +1,6 @@
 package com.nine.app.service;
 
 import com.nine.app.dto.UserDTO;
-import com.nine.app.entity.User;
 
 /**
  * @author wangjia
@@ -26,7 +25,7 @@ public interface UserService {
      *
      * @return
      */
-    UserDTO create(User resources);
+    UserDTO create(UserDTO resources);
 //
 //    /**
 //     * update
@@ -74,4 +73,6 @@ public interface UserService {
 //     */
 //    @CacheEvict(allEntries = true)
 //    void updateEmail(String username, String email);
+
+    UserDTO login(String userName, String password);
 }

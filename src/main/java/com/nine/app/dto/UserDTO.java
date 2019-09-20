@@ -15,6 +15,7 @@ import java.util.Set;
 public class UserDTO implements Serializable {
 
     private Long id;
+    private String token;
 
     private String username;
 

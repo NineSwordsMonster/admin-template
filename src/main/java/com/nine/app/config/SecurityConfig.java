@@ -2,7 +2,7 @@ package com.nine.app.config;
 
 import com.nine.app.config.security.JwtAuthenticationEntryPoint;
 import com.nine.app.config.security.JwtAuthorizationTokenFilter;
-import com.nine.app.config.security.service.JwtUserDetailsServiceImpl;
+import com.nine.app.config.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +13,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -38,7 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
-    private JwtUserDetailsServiceImpl jwtUserDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -49,19 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(jwtUserDetailsService)
-                .passwordEncoder(passwordEncoderBean());
-    }
-
-    @Bean
-    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
-        // Remove the ROLE_ prefix
-        return new GrantedAuthorityDefaults("");
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoderBean() {
-        return new BCryptPasswordEncoder();
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder);
     }
 
     @Bean

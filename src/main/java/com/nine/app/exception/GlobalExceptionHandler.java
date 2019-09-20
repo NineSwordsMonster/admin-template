@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
         if (e.getErrorCode() != null) {
             message = new Message(e.getErrorCode().getStatus(), e.getErrorCode().getCode(), e.getErrorCode().getReason());
         } else {
-            message = new Message(status.value(), e.getCause().toString(), e.getLocalizedMessage());
+            message = new Message(status.value(), HttpStatus.INTERNAL_SERVER_ERROR.name(), e.getMessage());
         }
         log.error("服务异常", e);
         return new ResponseEntity<>(message, status);

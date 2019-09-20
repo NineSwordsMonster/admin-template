@@ -4,15 +4,14 @@ import com.nine.app.config.security.AuthenticationInfo;
 import com.nine.app.config.security.AuthorizationUser;
 import com.nine.app.config.security.JwtUser;
 import com.nine.app.config.security.utils.JwtTokenUtil;
-import com.nine.app.util.EncryptUtils;
+import com.nine.app.dto.UserDTO;
+import com.nine.app.service.UserService;
 import com.nine.app.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AccountExpiredException;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,10 +34,11 @@ public class AuthenticationController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    @Qualifier("jwtUserDetailsServiceImpl")
-    private UserDetailsService userDetailsService;
+    private UserService userService;
 
     /**
      * 登录授权
@@ -49,20 +49,11 @@ public class AuthenticationController {
      */
 
     @PostMapping(value = "${jwt.auth.path}")
-    public ResponseEntity login(@Validated @RequestBody AuthorizationUser authorizationUser) {
+    public ResponseEntity<String> login(@Validated @RequestBody AuthorizationUser authorizationUser) {
 
-        final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(authorizationUser.getUsername());
+        final UserDTO userDTO = userService.login(authorizationUser.getUsername(), authorizationUser.getPassword());
 
-        if (!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(authorizationUser.getPassword()))) {
-            throw new AccountExpiredException("密码错误");
-        }
 
-        if (!jwtUser.isEnabled()) {
-            throw new AccountExpiredException("账号已停用，请联系管理员");
-        }
-
-        // 生成令牌
-        final String token = jwtTokenUtil.generateToken(jwtUser);
 
         // 返回 token
         return ResponseEntity.ok(new AuthenticationInfo(token, jwtUser));
