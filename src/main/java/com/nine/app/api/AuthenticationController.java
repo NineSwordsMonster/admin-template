@@ -55,7 +55,7 @@ public class AuthenticationController {
 
         final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(authorizationUser.getUsername());
 
-        if (!jwtUser.getPassword().equals(passwordEncoder.encode(authorizationUser.getPassword()))) {
+        if (!passwordEncoder.matches(authorizationUser.getPassword(), jwtUser.getPassword())) {
             throw new UnauthorizedException(ErrorCode.PasswordError);
         }
 

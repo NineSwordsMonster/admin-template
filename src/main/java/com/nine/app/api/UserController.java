@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +31,16 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping(value = "/create")
 //    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_CREATE')")
     @PreAuthorize("permitAll()")
     public ResponseEntity<UserDTO> create(@Validated @RequestBody UserDTO resources, Authentication authentication) {
 //        authentication.getDetails()
 //        checkLevel(resources);
+        resources.setPassword(passwordEncoder.encode(resources.getPassword()));
         final UserDTO userDTO = userService.create(resources);
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
     }

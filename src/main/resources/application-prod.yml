@@ -21,7 +21,7 @@ spring:
       connection-test-query: SELECT 1
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
 
@@ -41,7 +41,7 @@ security:
 #jwt
 jwt:
   header: Authorization
-  secret: xyy
+  secret: ZTVkYTA0OWExMjYzNjk3MWY4ZTM1OGJjNGM5NjJkZDFmNTY2YzgyY2Y1ZGU4NjJjOWM4ZTBhYTRjMjg3Nzk1MSAgLQo=
   # token 过期时间 2个小时
   expiration: 7200000
   auth:

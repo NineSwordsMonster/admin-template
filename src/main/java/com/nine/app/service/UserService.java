@@ -73,6 +73,4 @@ public interface UserService {
 //     */
 //    @CacheEvict(allEntries = true)
 //    void updateEmail(String username, String email);
-
-    UserDTO login(String userName, String password);
 }

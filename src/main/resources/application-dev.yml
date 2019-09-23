@@ -24,7 +24,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+    properties:
+      hibernate:
+        format_sql: true
 # Authorization Server 配置
 security:
   oauth2:
@@ -43,7 +45,7 @@ security:
 #jwt
 jwt:
   header: Authorization
-  secret: xyy
+  secret: VjJ4V2IyTXdOVlpVYlRWUlZrUkNURU5uUFQwSwo=
   # token 过期时间 2个小时
   expiration: 7200000
   auth:

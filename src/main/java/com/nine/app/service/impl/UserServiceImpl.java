@@ -1,6 +1,5 @@
 package com.nine.app.service.impl;
 
-import com.nine.app.config.security.utils.JwtTokenUtil;
 import com.nine.app.dal.repository.UserRepository;
 import com.nine.app.dto.UserDTO;
 import com.nine.app.entity.User;
@@ -9,17 +8,10 @@ import com.nine.app.exception.EntityNotFoundException;
 import com.nine.app.mapper.detail.UserMapper;
 import com.nine.app.service.UserService;
 import com.nine.app.util.ValidationUtil;
-import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.authentication.AccountExpiredException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,12 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     //
 //    @Autowired
@@ -74,8 +60,6 @@ public class UserServiceImpl implements UserService {
 //        }
         final User user = userMapper.toEntity(resources);
 
-        // 默认密码 123456，此密码是加密后的字符
-        user.setPassword(passwordEncoder.encode("123456"));
         user.setEnabled(true);
         return userMapper.toDTO(userRepository.save(user));
     }
@@ -156,25 +140,4 @@ public class UserServiceImpl implements UserService {
 //    public void updateEmail(String username, String email) {
 //        userRepository.updateEmail(username,email);
 //    }
-
-
-    @Override
-    public UserDTO login(String userName, String password) {
-        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(userName, password);
-        final Authentication authentication = authenticationManager.authenticate(upToken);
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        final User user = userRepository.findByUsernameAndPassword(userName, password);
-        if (user == null) {
-            throw new AccountExpiredException("用户名或密码错误");
-        }
-
-        if (BooleanUtils.isNotTrue(user.getEnabled())) {
-            throw new AccountExpiredException("账号已停用，请联系管理员");
-        }
-        final UserDTO userDTO = userMapper.toDTO(user);
-        // 生成令牌
-        return userDTO;
-    }
 }
