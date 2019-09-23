@@ -1,8 +1,8 @@
-package com.nine.app.mapper.detail;
+package com.nine.app.dto.mapper.detail;
 
-import com.nine.app.dto.MenuDTO;
-import com.nine.app.entity.Menu;
-import com.nine.app.mapper.EntityMapper;
+import com.nine.app.dto.PermissionDTO;
+import com.nine.app.entity.Permission;
+import com.nine.app.dto.mapper.EntityMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -15,6 +15,6 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring",
         uses = {},
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface MenuMapper extends EntityMapper<MenuDTO, Menu> {
+public interface PermissionMapper extends EntityMapper<PermissionDTO, Permission> {
 
 }

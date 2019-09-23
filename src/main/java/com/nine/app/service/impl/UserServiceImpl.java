@@ -5,7 +5,7 @@ import com.nine.app.dto.UserDTO;
 import com.nine.app.entity.User;
 import com.nine.app.exception.EntityExistException;
 import com.nine.app.exception.EntityNotFoundException;
-import com.nine.app.mapper.detail.UserMapper;
+import com.nine.app.dto.mapper.detail.UserMapper;
 import com.nine.app.service.UserService;
 import com.nine.app.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;

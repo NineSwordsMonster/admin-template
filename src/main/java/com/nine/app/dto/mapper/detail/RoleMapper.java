@@ -1,8 +1,8 @@
-package com.nine.app.mapper.detail;
+package com.nine.app.dto.mapper.detail;
 
 import com.nine.app.dto.RoleDTO;
 import com.nine.app.entity.Role;
-import com.nine.app.mapper.EntityMapper;
+import com.nine.app.dto.mapper.EntityMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

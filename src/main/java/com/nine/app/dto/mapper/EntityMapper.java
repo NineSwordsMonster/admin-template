@@ -1,4 +1,4 @@
-package com.nine.app.mapper;
+package com.nine.app.dto.mapper;
 
 import java.util.List;
 
