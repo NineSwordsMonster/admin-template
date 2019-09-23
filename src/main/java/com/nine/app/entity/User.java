@@ -22,7 +22,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User extends BaseEntity<Long> {
     @Column(unique = true)
     private String username;
     @Column(name = "avatar")

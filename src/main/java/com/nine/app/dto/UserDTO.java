@@ -1,6 +1,5 @@
 package com.nine.app.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -27,7 +26,6 @@ public class UserDTO implements Serializable {
 
     private Boolean enabled;
 
-    @JsonIgnore
     private String password;
 
     private Date createTime;

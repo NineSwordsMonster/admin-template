@@ -18,7 +18,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "menu")
-public class Menu extends BaseEntity {
+public class Menu extends BaseEntity<Long> {
 
     @Column(name = "name")
     private String name;

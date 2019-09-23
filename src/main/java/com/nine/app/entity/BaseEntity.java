@@ -1,7 +1,9 @@
 package com.nine.app.entity;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -22,33 +24,40 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity<U> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    protected Long id;
     /**
      * 创建时间
      */
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    protected Date createDate;
 
+    @CreatedBy
+    @Column(name = "create_user", nullable = false)
+    protected U createUser;
     /**
      * 更新时间
      */
-    @Column(name = "update_date")
+    @Column(name = "update_date", nullable = false)
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    protected Date updateDate;
+
+    @LastModifiedBy
+    @Column(name = "update_user", nullable = false)
+    protected U updateUser;
 
     /**
      * 是否删除
      * 0-未删除 1-已删除
      */
     @Column(name = "deleted")
-    private Boolean deleted;
+    protected Boolean deleted;
 
 }
 
