@@ -22,7 +22,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity<Long> {
+public class User extends BaseEntity {
     @Column(unique = true)
     private String username;
     @Column(name = "avatar")
@@ -42,5 +42,4 @@ public class User extends BaseEntity<Long> {
     @ManyToMany
     @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private Set<Role> roles;
-
 }

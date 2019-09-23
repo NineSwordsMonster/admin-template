@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 过滤请求
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, whiteList).anonymous()
-                .antMatchers(HttpMethod.POST, "/auth/" + loginPath, "/user/create").anonymous()
+//                .antMatchers(HttpMethod.POST, "/auth/" + loginPath, "/user/create").anonymous()
                 .antMatchers(HttpMethod.OPTIONS, "/**").anonymous()
                 // 所有请求都需要认证
                 .anyRequest().authenticated()

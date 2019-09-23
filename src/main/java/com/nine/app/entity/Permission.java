@@ -17,7 +17,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "permission")
-public class Permission extends BaseEntity<Long> {
+public class Permission extends BaseEntity {
 
     @Column(name = "name")
     private String name;

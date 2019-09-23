@@ -1,5 +1,6 @@
 package com.nine.app.config;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,5 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019/9/20 10:35
  */
 @Configuration
+@EnableCaching
 public class AppConfig {
 }

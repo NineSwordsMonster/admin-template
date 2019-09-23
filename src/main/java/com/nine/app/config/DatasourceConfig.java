@@ -1,6 +1,7 @@
 package com.nine.app.config;
 
 import com.nine.app.dal.repository.BaseRepository;
+import com.nine.app.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2019/9/20 10:36
  */
 @EnableJpaAuditing(
-        auditorAwareRef = "userAuditorAware",
+        auditorAwareRef = "auditorProvider",
         dateTimeProviderRef = "dateTimeProvider")
 @EnableJpaRepositories(
         basePackageClasses = {BaseRepository.class},

@@ -23,7 +23,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "role")
-public class Role extends BaseEntity<Long> {
+public class Role extends BaseEntity {
 
     @Column(nullable = false)
     @NotBlank

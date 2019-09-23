@@ -39,15 +39,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(message, status);
     }
 
-    @ExceptionHandler(AccountExpiredException.class)
-    @ResponseBody
-    public ResponseEntity<Message> handleAccountExpiredException(AccountExpiredException e) {
-        ResponseStatus responseStatus = findMergedAnnotation(e.getClass(), ResponseStatus.class);
-        HttpStatus status = responseStatus != null ? responseStatus.value() : HttpStatus.UNAUTHORIZED;
-        log.error("服务异常", e);
-        return new ResponseEntity<>(new Message(status.value(), HttpStatus.UNAUTHORIZED.name(), e.getMessage()), status);
-    }
-
     @ExceptionHandler
     @ResponseBody
     public ResponseEntity<Message> handleException(Exception e) {
