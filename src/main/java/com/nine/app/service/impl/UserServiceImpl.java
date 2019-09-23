@@ -1,6 +1,5 @@
 package com.nine.app.service.impl;
 
-import com.nine.app.config.security.JwtUser;
 import com.nine.app.config.security.utils.JwtTokenUtil;
 import com.nine.app.dal.repository.UserRepository;
 import com.nine.app.dto.UserDTO;
@@ -176,8 +175,6 @@ public class UserServiceImpl implements UserService {
         }
         final UserDTO userDTO = userMapper.toDTO(user);
         // 生成令牌
-        final String token = jwtTokenUtil.generateToken(new JwtUser());
-        userDTO.setToken(token);
         return userDTO;
     }
 }

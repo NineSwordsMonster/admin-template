@@ -4,13 +4,15 @@ import com.nine.app.config.security.AuthenticationInfo;
 import com.nine.app.config.security.AuthorizationUser;
 import com.nine.app.config.security.JwtUser;
 import com.nine.app.config.security.utils.JwtTokenUtil;
-import com.nine.app.dto.UserDTO;
-import com.nine.app.service.UserService;
+import com.nine.app.exception.ErrorCode;
+import com.nine.app.exception.UnauthorizedException;
 import com.nine.app.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,9 @@ public class AuthenticationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Qualifier("userDetailsServiceImpl")
     @Autowired
-    private UserService userService;
+    private UserDetailsService userDetailsService;
 
     /**
      * 登录授权
@@ -47,13 +50,21 @@ public class AuthenticationController {
      *
      * @return
      */
-
     @PostMapping(value = "${jwt.auth.path}")
-    public ResponseEntity<String> login(@Validated @RequestBody AuthorizationUser authorizationUser) {
+    public ResponseEntity<AuthenticationInfo> login(@Validated @RequestBody AuthorizationUser authorizationUser) {
 
-        final UserDTO userDTO = userService.login(authorizationUser.getUsername(), authorizationUser.getPassword());
+        final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(authorizationUser.getUsername());
 
+        if (!jwtUser.getPassword().equals(passwordEncoder.encode(authorizationUser.getPassword()))) {
+            throw new UnauthorizedException(ErrorCode.PasswordError);
+        }
 
+        if (!jwtUser.isEnabled()) {
+            throw new UnauthorizedException(ErrorCode.InvalidAccount);
+        }
+
+        // 生成令牌
+        final String token = jwtTokenUtil.generateToken(jwtUser);
 
         // 返回 token
         return ResponseEntity.ok(new AuthenticationInfo(token, jwtUser));

@@ -9,6 +9,8 @@ package com.nine.app.exception;
 public enum ErrorCode {
     // InvalidRequestException 400
     ParamError(100, "ParamError", " 参数错误"),
+    PasswordError(10401, "PasswordError", " 密码错误"),
+    InvalidAccount(11401, "InvalidAccount", " 账号已停用"),
     ;
 
     private int status;
